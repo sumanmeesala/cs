@@ -23,7 +23,7 @@ if (existingView == null) {
    println("View '$viewName' already exists.")
    }
 
-matrixJob(environment+'_cs1stjob') {
+job(environment+'_cs1stjob') {
     description('This is an 1st cc Job DSL job')
 
     configure { project ->
