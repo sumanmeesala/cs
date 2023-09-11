@@ -67,7 +67,7 @@ myView = Jenkins.instance.getView(viewName)
    println("View ' + $myView.name + ' created.")
    def jobName = environment+'_cs1stjob'
    println("job ' + $jobName + ' created.")
-myView.name.add($jobName) 
+myView.name.add(jobName) 
 myView.save()
 jenkins.save()
 
