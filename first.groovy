@@ -42,12 +42,6 @@ matrixJob(environment+'_cs1stjob') {
       }
       
 
-
-
-
-    
-
-
 def globalConfiguration = GlobalConfiguration.all().find { it.displayName == 'Mask Passwords and Regexes' }
 
 if (globalConfiguration) {
@@ -68,7 +62,8 @@ if (globalConfiguration) {
     }
 }
                    
-myView = hudson.model.Hudson.instance.getView(environment+'_csJobs')
+def myView = hudson.model.Hudson.instance.getView(environment+'_csJobs')
+   println("View ' + $myView + ' created.")
 myView.doAddJobToView(environment+'_cs1stjob') 
 jenkins.save()
 
