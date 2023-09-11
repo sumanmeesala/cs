@@ -42,29 +42,19 @@ matrixJob('${environment}_cs1stjob') {
 
 
     axes {
-        axis {
-            name('USER_DEFINED_AXIS')
-            userDefinedAxis {
-                name('userAxis')
-                valueString('user1', 'user2', 'user3') // Add your user-defined values here
-            }
-        }
-
-        axis {
+        dynamicAxis {
             name('DYNAMIC_AXIS')
-            dynamicAxis {
-                name('dynamicAxisName')
-                script {
-                    // Define your dynamic values here
-                    def dynamicValues = ['valueA', 'valueB', 'valueC']
-                    dynamicValues.each { value ->
-                        return value
-                    }
+            script {
+                // Define your dynamic values here
+                def dynamicValues = ['valueA', 'valueB', 'valueC']
+                dynamicValues.each { value ->
+                    return value
                 }
             }
         }
     }
-    
+
+
     
 
 
