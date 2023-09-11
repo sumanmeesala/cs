@@ -41,7 +41,7 @@ matrixJob('${environment}_cs1stjob') {
 
        
 axes {
-        userDefined('MY_AXIS_NAME') // Specify the axis name
+        userDefinedAxis('MY_AXIS_NAME') // Specify the axis name
          {
             name('usr') // Define the name for the user-defined axis
             values('user') // Define the values for the user-defined axis
