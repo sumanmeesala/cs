@@ -7,6 +7,7 @@ import jenkins.model.GlobalConfiguration;
 import javaposse.jobdsl.dsl.DslFactory;
 
 println("env " + System.getenv('env') + " created.")
+println("env " + env + " created.")
 def environment = System.getenv('env') ?: "default"
 def custName = 'NONE'
 
