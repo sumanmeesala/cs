@@ -7,6 +7,7 @@ import jenkins.model.GlobalConfiguration;
 import javaposse.jobdsl.dsl.DslFactory;
 
 def environment = System.getenv('env') ?: "default"
+def custName = 'NONE'
 
 def jenkins = Jenkins.instance
 def viewName = '${environment}_csJobs'
@@ -36,7 +37,7 @@ matrixJob('${environment}_cs1stjob') {
     }
     
     parameters {
-      stringParam('custName','NONE','desc')
+      stringParam('custName',custName,'desc')
       }
       
 
