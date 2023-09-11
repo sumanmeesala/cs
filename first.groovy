@@ -23,7 +23,9 @@ if (existingView == null) {
    println("View '$viewName' already exists.")
    }
 
-jobDsl(environment+'_cs1stjob') {
+   def jobName = environment+'_cs1stjob'
+   
+job(jobName) {
     description('This is an 1st cc Job DSL job')
 
     configure { project ->
@@ -65,7 +67,7 @@ if (globalConfiguration) {
                    
 myView = Jenkins.instance.getView(viewName)
    println("View ' + $myView.name + ' created.")
-   def jobName = environment+'_cs1stjob'
+
    def jobToAdd = Jenkins.instance.getItemByFullName(jobName, Job.class)
    println("job ' + $jobName $jobToAdd+ ' created.")
 myView.doAddJobToView(jobName) 
