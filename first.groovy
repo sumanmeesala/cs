@@ -10,7 +10,7 @@ def environment = System.getenv('env') ?: "default"
 def custName = 'NONE'
 
 def jenkins = Jenkins.instance
-def viewName = '${environment}_csJobs'
+def viewName = '$environment_csJobs'
 def existingView = jenkins.getView(viewName)
 
 if (existingView == null) {
