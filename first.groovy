@@ -10,7 +10,7 @@ def environment = System.getenv('env') ?: "default"
 def custName = 'NONE'
 
 def jenkins = Jenkins.instance
-def viewName = $environment+'_csJobs'
+def viewName = environment+'_csJobs'
 def existingView = jenkins.getView(viewName)
 
 if (existingView == null) {
@@ -21,7 +21,7 @@ if (existingView == null) {
    println("View '$viewName' already exists.")
 }
 
-matrixJob($environment+'_cs1stjob') {
+matrixJob(environment+'_cs1stjob') {
     description('This is an 1st cc Job DSL job')
 
     configure { project ->
@@ -67,8 +67,8 @@ if (globalConfiguration) {
     }
 
                    
-myView = hudson.model.Hudson.instance.getView($environment+'_csJobs')
-myView.doAddJobToView($environment+'_cs1stjob') 
+myView = hudson.model.Hudson.instance.getView(environment+'_csJobs')
+myView.doAddJobToView(environment+'_cs1stjob') 
 jenkins.save()
 }
 
