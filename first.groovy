@@ -63,7 +63,7 @@ if (globalConfiguration) {
     }
 }
                    
-myView = hudson.model.Hudson.instance.getView(viewName)
+myView = Jenkins.instance.getView(viewName)
    println("View ' + $myView + ' created.")
 myView.doAddJobToView(environment+'_cs1stjob') 
 jenkins.save()
