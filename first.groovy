@@ -66,8 +66,9 @@ if (globalConfiguration) {
 myView = Jenkins.instance.getView(viewName)
    println("View ' + $myView.name + ' created.")
    def jobName = environment+'_cs1stjob'
+   def jobToAdd = Jenkins.instance.getItemByFullName(jobName, Job.class)
    println("job ' + $jobName + ' created.")
-myView.add(jobName) 
+myView.add(jobToAdd) 
 myView.save()
 jenkins.save()
 
