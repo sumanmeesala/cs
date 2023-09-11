@@ -65,7 +65,8 @@ if (globalConfiguration) {
                    
 myView = Jenkins.instance.getView(viewName)
    println("View ' + $myView.name + ' created.")
-myView.add(environment+'_cs1stjob') 
+myView.name.add(environment+'_cs1stjob') 
+myView.save()
 jenkins.save()
 
 
