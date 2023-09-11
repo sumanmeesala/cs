@@ -4,6 +4,7 @@ import hudson.model.*;
 import jenkins.model.Jenkins;
 import hudson.model.ListView;
 import jenkins.model.GlobalConfiguration;
+import javaposse.jobdsl.dsl.DslFactory;
 
 def environment = System.getenv('env') ?: "default"
 
@@ -40,12 +41,31 @@ matrixJob('${environment}_cs1stjob') {
       
 
 
-axes {
-    axis {
-        name('MY_AXIS_NAME') // Specify the axis name
-        string('user') // Define the values for the user-defined axis
+    axes {
+        axis {
+            name('USER_DEFINED_AXIS')
+            userDefinedAxis {
+                name('userAxis')
+                values('user1', 'user2', 'user3') // Add your user-defined values here
+            }
+        }
+
+        axis {
+            name('DYNAMIC_AXIS')
+            dynamicAxis {
+                name('dynamicAxisName')
+                script {
+                    // Define your dynamic values here
+                    def dynamicValues = ['valueA', 'valueB', 'valueC']
+                    dynamicValues.each { value ->
+                        return value
+                    }
+                }
+            }
+        }
     }
-}
+    
+    
 
 
 def globalConfiguration = GlobalConfiguration.all().find { it.displayName == 'Mask Passwords and Regexes' }
