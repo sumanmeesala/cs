@@ -44,11 +44,7 @@ matrixJob('${environment}_cs1stjob') {
     axes {
         dynamicAxis {
             name('DYNAMIC_AXIS')
-            script {
-                // Define your dynamic values here
-                return ['valueA', 'valueB', 'valueC']
-                }
-            }
+            values('valueA', 'valueB', 'valueC') // Define your dynamic values here
         }
     
 
