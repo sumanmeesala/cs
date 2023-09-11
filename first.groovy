@@ -6,9 +6,8 @@ import hudson.model.ListView;
 import jenkins.model.GlobalConfiguration;
 import javaposse.jobdsl.dsl.DslFactory;
 
-println("env " + System.getenv('env') + " created.")
-println("env " + env + " created.")
-def environment = System.getenv('env') ?: "default"
+
+def environment = env
 def custName = 'NONE'
 
 def jenkins = Jenkins.instance
@@ -59,7 +58,7 @@ if (globalConfiguration) {
            System.setProperty("org.jenkinsci.plugins.workflow.steps.SecretEnvVarHelper.CONFIGURED", "true")
            println("Enabled passwords")
            } else {
-            println("Enabled passwordsnot found")
+            println("Enabled passwords not found")
                    }
                    
     def pName = "${custName}"
