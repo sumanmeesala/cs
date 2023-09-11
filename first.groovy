@@ -5,7 +5,7 @@ import jenkins.model.Jenkins;
 import hudson.model.ListView;
 import jenkins.model.GlobalConfiguration;
 
-def environment = args[0] ?: "default"
+def environment = System.getenv('env') ?: "default"
 
 def jenkins = Jenkins.instance
 def viewName = '${environment}_csJobs'
