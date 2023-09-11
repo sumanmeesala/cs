@@ -46,7 +46,7 @@ matrixJob('${environment}_cs1stjob') {
             name('DYNAMIC_AXIS')
             values('valueA', 'valueB', 'valueC') // Define your dynamic values here
         }
-    
+    }
 
 
     
