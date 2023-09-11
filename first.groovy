@@ -39,14 +39,14 @@ matrixJob('${environment}_cs1stjob') {
       }
       
 
-       
-axes {
-        userDefinedAxis('MY_AXIS_NAME') // Specify the axis name
-         {
-            name('usr') // Define the name for the user-defined axis
-            values('user') // Define the values for the user-defined axis
-         }
-     }
+
+     
+     axes {
+        axis {
+             name 'usr'
+             values 'user'
+             }
+          }
 
 
 def globalConfiguration = GlobalConfiguration.all().find { it.displayName == 'Mask Passwords and Regexes' }
