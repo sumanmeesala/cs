@@ -18,9 +18,11 @@ if (existingView == null) {
    def newView = new ListView(viewName)
    jenkins.addView(newView)
    println("View '$viewName' created.")
+      println("View '$newView' created.")
    } else {
    println("View '$viewName' already exists.")
-}
+    println("View '$newView' already exists.")
+  }
 
 matrixJob(environment+'_cs1stjob') {
     description('This is an 1st cc Job DSL job')
@@ -62,7 +64,7 @@ if (globalConfiguration) {
     }
 }
                    
-def myView = $viewName
+def myView = $newView
    println("View ' + $myView + ' created.")
 myView.doAddJobToView(environment+'_cs1stjob') 
 jenkins.save()
