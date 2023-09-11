@@ -41,7 +41,7 @@ matrixJob('${environment}_cs1stjob') {
     axes {
          axis {
              name('dyn')
-             valueString { value('dynamic') }
+             values { value('dynamic') }
              }
          userDefined('MY_AXIS_NAME') {
              name('usr')
