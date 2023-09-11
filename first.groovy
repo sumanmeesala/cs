@@ -46,13 +46,11 @@ matrixJob('${environment}_cs1stjob') {
             name('DYNAMIC_AXIS')
             script {
                 // Define your dynamic values here
-                def dynamicValues = ['valueA', 'valueB', 'valueC']
-                dynamicValues.each { value ->
-                    return value
+                return ['valueA', 'valueB', 'valueC']
                 }
             }
         }
-    }
+    
 
 
     
