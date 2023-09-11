@@ -66,10 +66,10 @@ if (globalConfiguration) {
     steps {
         shell('echo ${environment} "Im Athna_cc_trigger" ${pName}')
     }
-
+}
                    
 myView = hudson.model.Hudson.instance.getView(environment+'_csJobs')
 myView.doAddJobToView(environment+'_cs1stjob') 
 jenkins.save()
-}
+
 
