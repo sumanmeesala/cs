@@ -37,12 +37,7 @@ matrixJob(jobName) {
                   
                    
                    
-def myView = jenkins.getView(viewName)
-def job = jenkins.getItem(jobName)
-myView.add(job)
 
-
-myView.save()
 jenkins.save()
 
 }
