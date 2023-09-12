@@ -36,7 +36,7 @@ matrixJob(jobName) {
               
           println("job ' + $jobName + ' created-2.")
                   
-existingView.add($jobName)
+existingView.add(jobName)
 
 
 }
