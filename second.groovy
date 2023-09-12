@@ -38,7 +38,7 @@ matrixJob(jobName) {
                    
                    
 myView = hudson.model.Hudson.instance.getView(viewName)
-myView.doAddJobToView(jobName) 
+
 
 
 myView.save()
