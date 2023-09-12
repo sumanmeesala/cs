@@ -1,68 +1,81 @@
+package hudson.cli;
+
 import hudson.model.*
 import hudson.matrix.*
 import hudson.util.*
 import jenkins.model.Jenkins
+import hudson.model.ListView
+import jenkins.model.GlobalConfiguration
+import javaposse.jobdsl.dsl.DslFactory
 
-def environment = env  
+
+def environment = env
 def custName = 'NONE'
-def viewName = "${environment}_csJobs"
-def jobName = "${environment}_cs1stjob"
 
-// Create or retrieve the view
 def jenkins = Jenkins.instance
+def viewName = environment+'_csJobs'
 def existingView = jenkins.getView(viewName)
 
 if (existingView == null) {
-   def newView = new ListView(viewName)
-   jenkins.addView(newView)
-   println("View '$viewName' created.")
-} else {
+                    def newView = new ListView(viewName)
+                    jenkins.addView(newView)
+                    println("View '$newView' created.")
+                          }
+else {
    println("View '$viewName' already exists.")
-}
+     }
 
-// Define the matrix job
-def matrixJob = jenkins.createProject(MatrixProject, jobName)
-matrixJob.setDescription("This is a Matrix Job DSL job")
+def jobName = environment+'_cs1stjob'
+   
+matrixJob(jobName) {
 
-// Define the axes
-def axes = []
-axes.add(new Axis("DYNAMIC_AXIS", ["valueA", "valueB", "valueC"]))
+    description('This is an 1st cc Job DSL job')
 
-// Configure the axes for the matrix job
-matrixJob.setAxes(new hudson.matrix.AxisList(axes))
+    configure { project ->
+        project / 'logRotator' {
+            numToKeep(4)
+                               }
+              }
+              
+    concurrentBuild(true)
+    
+    scm {
+       none()
+        }
+    
+    parameters {
+      stringParam('custName',custName,'desc')
+               }
+      
+    def globalConfiguration = GlobalConfiguration.all().find { it.displayName == 'Mask Passwords and Regexes' }
 
-// Add the string parameter
-matrixJob.addProperty(new ParametersDefinitionProperty(
-    new StringParameterDefinition('custName', custName, 'Description')
-))
+    if (globalConfiguration) {
+                      globalConfiguration.setMaskPasswords(true)
+                      globalConfiguration.setMaskPasswordsConsoleLog(true)
+                      globalConfiguration.save()
+           
+                      System.setProperty("org.jenkinsci.plugins.workflow.steps.SecretEnvVarHelper.CONFIGURED", "true")
+                      println("Enabled passwords")
+                             }
+    else {
+            println("Enabled passwords not found")
+         }
+                   
+    def pName = "${custName}"
 
-// Configure concurrent builds
-matrixJob.setConcurrentBuild(true)
+    steps {
+        shell('echo ${environment} "Im Athna_cc_trigger" ${pName}')
+          }
+          
+                  }
+                   
+myView = Jenkins.instance.getView(viewName)
+println("View ' + $myView.name + ' created.")
 
-// Configure SCM (none)
-matrixJob.setScm(new SingleSCM(""))
+def jobToAdd = Jenkins.instance.getItemByFullName(jobName, Job.class)
+println("job ' + $jobName $jobToAdd+ ' created.")
+myView.doAddJobToView(jobName) 
+myView.save()
+jenkins.save()
 
-// Configure password masking
-def globalConfiguration = GlobalConfiguration.all().find { it.displayName == 'Mask Passwords and Regexes' }
-
-if (globalConfiguration) {
-    globalConfiguration.setMaskPasswords(true)
-    globalConfiguration.setMaskPasswordsConsoleLog(true)
-    globalConfiguration.save()
-
-    System.setProperty("org.jenkinsci.plugins.workflow.steps.SecretEnvVarHelper.CONFIGURED", "true")
-    println("Enabled passwords")
-} else {
-    println("Enabled passwords not found")
-}
-
-
-// Save the job
-matrixJob.save()
-
-// Add the job to the view
-existingView.add(matrixJob)
-existingView.save()
-
-println("Matrix job '$jobName' added to view '$viewName'")
 
