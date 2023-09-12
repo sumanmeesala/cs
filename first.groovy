@@ -33,12 +33,9 @@ matrixJob(jobName) {
     description('This is an 1st cc Job DSL job')
 
 
-    
-
-
           println("job ' + $jobName + ' created-2.")
                   
-                  
+                   
                    
 def myView = jenkins.getView(viewName)
 def job = jenkins.getItem(jobName)
@@ -49,5 +46,3 @@ myView.save()
 jenkins.save()
 
 }
-
-
