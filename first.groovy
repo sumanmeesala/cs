@@ -37,19 +37,7 @@ matrixJob(jobName) {
       stringParam('custName',custName,'desc')
                }
       
-    def globalConfiguration = GlobalConfiguration.all().find { it.displayName == 'Mask Passwords and Regexes' }
 
-    if (globalConfiguration) {
-                      globalConfiguration.setMaskPasswords(true)
-                      globalConfiguration.setMaskPasswordsConsoleLog(true)
-                      globalConfiguration.save()
-           
-                      System.setProperty("org.jenkinsci.plugins.workflow.steps.SecretEnvVarHelper.CONFIGURED", "true")
-                      println("Enabled passwords")
-                             }
-    else {
-            println("Enabled passwords not found")
-         }
                    
     def pName = "${custName}"
 
