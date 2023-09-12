@@ -39,7 +39,7 @@ matrixJob(jobName) {
       
 
                    
-    def pName = "${custName}"
+ 
 
     steps {
         shell('echo ${environment} "Im Athna_cc_trigger" ${pName}')
