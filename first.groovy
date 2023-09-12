@@ -65,8 +65,9 @@ matrixJob(jobName) {
 
     steps {
         shell('echo ${environment} "Im Athna_cc_trigger" ${pName}')
+println("job ' + $jobName + ' created-1.")
           }
-          
+          println("job ' + $jobName + ' created-2.")
                   }
                    
 myView = Jenkins.instance.getView(viewName)
