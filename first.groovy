@@ -74,7 +74,7 @@ println("job ' + $jobName + ' created-1.")
 //println("View ' + $myView.name + ' created.")
 
 //def jobToAdd = Jenkins.instance.getItemByFullName(jobName, Job.class)
-println("job ' + $jobName $jobToAdd+ ' created.")
+//println("job ' + $jobName $jobToAdd+ ' created.")
 //myView.doAddJobToView(jobName) 
 //myView.save()
 jenkins.save()
