@@ -13,17 +13,17 @@ def environment = env
 def custName = 'NONE'
 
 def jenkins = Jenkins.instance
-def viewName = environment+'_csJobs'
-def existingView = jenkins.getView(viewName)
+//def viewName = environment+'_csJobs'
+//def existingView = jenkins.getView(viewName)
 
-if (existingView == null) {
-                    def newView = new ListView(viewName)
-                    jenkins.addView(newView)
-                    println("View '$newView' created.")
-                          }
-else {
-   println("View '$viewName' already exists.")
-     }
+//if (existingView == null) {
+//                    def newView = new ListView(viewName)
+//                    jenkins.addView(newView)
+//                    println("View '$newView' created.")
+//                          }
+//else {
+//   println("View '$viewName' already exists.")
+//     }
 
 def jobName = environment+'_cs1stjob'
    
@@ -70,13 +70,13 @@ println("job ' + $jobName + ' created-1.")
           println("job ' + $jobName + ' created-2.")
                   }
                    
-myView = Jenkins.instance.getView(viewName)
-println("View ' + $myView.name + ' created.")
+//myView = Jenkins.instance.getView(viewName)
+//println("View ' + $myView.name + ' created.")
 
-def jobToAdd = Jenkins.instance.getItemByFullName(jobName, Job.class)
+//def jobToAdd = Jenkins.instance.getItemByFullName(jobName, Job.class)
 println("job ' + $jobName $jobToAdd+ ' created.")
-myView.doAddJobToView(jobName) 
-myView.save()
+//myView.doAddJobToView(jobName) 
+//myView.save()
 jenkins.save()
 
 
