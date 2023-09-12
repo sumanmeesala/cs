@@ -16,6 +16,8 @@ def jenkins = Jenkins.instance
 def viewName = environment+'_csJobs'
 def existingView = jenkins.getView(viewName)
 
+   println("existing View '$existingView' .")
+   
 if (existingView == null) {
                     def newView = new ListView(viewName)
                     jenkins.addView(newView)
@@ -37,8 +39,7 @@ matrixJob(jobName) {
                   
                    
 
-def myView = jenkins.getView(viewName)
 def job = jenkins.getItem(jobName)
-myView.add(job)
+existingView.add(job)
 
 }
