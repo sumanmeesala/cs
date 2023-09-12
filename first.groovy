@@ -29,7 +29,7 @@ def axes = []
 axes.add(new Axis("DYNAMIC_AXIS", ["valueA", "valueB", "valueC"]))
 
 // Configure the axes for the matrix job
-matrixJob.setAxes(new AxisList(axes))
+matrixJob.setAxes(new hudson.matrix.AxisList(axes))
 
 // Add the string parameter
 matrixJob.addProperty(new ParametersDefinitionProperty(
@@ -40,7 +40,7 @@ matrixJob.addProperty(new ParametersDefinitionProperty(
 matrixJob.setConcurrentBuild(true)
 
 // Configure SCM (none)
-matrixJob.setScm(new NullSCM())
+matrixJob.setScm(new SingleSCM(""))
 
 // Configure password masking
 def globalConfiguration = GlobalConfiguration.all().find { it.displayName == 'Mask Passwords and Regexes' }
