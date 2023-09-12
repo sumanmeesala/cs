@@ -37,8 +37,9 @@ matrixJob(jobName) {
                   
                    
                    
-myView = hudson.model.Hudson.instance.getView(viewName)
-
+def myView = jenkins.getView(viewName)
+def job = jenkins.getItem(jobName)
+myView.add(job)
 
 
 myView.save()
