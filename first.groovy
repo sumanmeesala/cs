@@ -37,7 +37,8 @@ matrixJob(jobName) {
           println("job ' + $jobName + ' created-2.")
                   
 
+def myView = jenkins.getView(viewName)
 def job = jenkins.getItem(jobName)
-existingView.add(job)
+myView.add(job)
 
 }
