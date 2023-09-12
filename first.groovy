@@ -32,12 +32,11 @@ matrixJob(jobName) {
 
     description('This is an 1st cc Job DSL job')
 
-    configure { project ->
-        project / 'logRotator' {
-            numToKeep(4)
-                               }
-              }
-              
+    concurrentBuild(true)
+    
+    scm {
+       none()
+        }
 
           println("job ' + $jobName + ' created-2.")
                   
