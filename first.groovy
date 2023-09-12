@@ -34,9 +34,7 @@ matrixJob(jobName) {
 
     concurrentBuild(true)
     
-    scm {
-       none()
-        }
+
 
           println("job ' + $jobName + ' created-2.")
                   
