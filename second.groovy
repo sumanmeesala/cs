@@ -34,7 +34,7 @@ matrixJob(jobName) {
 
 
           println("job ' + $jobName + ' created-2.")
-                  }
+                  
                    
 myView = Jenkins.instance.getView(viewName)
 println("View ' + $myView.name + ' created.")
@@ -45,4 +45,4 @@ myView.doAddJobToView(jobName)
 myView.save()
 jenkins.save()
 
-
+}
