@@ -32,7 +32,7 @@ matrixJob(jobName) {
 
     description('This is an 1st cc Job DSL job')
 
-    concurrentBuild(true)
+
     
 
 
