@@ -25,7 +25,7 @@ if (existingView == null) {
 
    def jobName = environment+'_cs1stjob'
    
-job(jobName) {
+matrixJob(jobName) {
     description('This is an 1st cc Job DSL job')
 
     configure { project ->
