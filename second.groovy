@@ -56,6 +56,5 @@ matrixJob(jobName) {
     // Add an Execute Shell build step
     job.getBuildersList().add(new Shell("echo 'Hello, Jenkins! This is ${environment}'"))
 
-jenkins.save()
 
 }
