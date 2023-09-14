@@ -37,22 +37,25 @@ matrixJob(jobName) {
 
           println("job ' + $jobName + ' created-2.")
                   
-myView = hudson.model.Hudson.instance.getView(viewName)
- println("view ' +$myView $viewName $jobName + ' job")
- 
-  if (viewName instanceof ListView && jobName != null) {
-     println("job ' + $viewName $jobName + ' adding -3.")
-viewName.doAddJobToView(jobName) 
-viewName.save()
-} 
-else {
-newV = hudson.model.Hudson.instance.getView(viewName)
 
-def newJ = jenkins.getItem(jobName)
-   println("job ' + $viewName $newV $newJ $jobName+ ' adding -4.")
-newV.doAddJobToView(newJ) 
-viewName.save()
-}
+    // Set log rotation
+    job.buildDiscarder = new LogRotator(4, -1, -1, -1)
+
+    // Add a string parameter
+    job.addProperty(new ParametersDefinitionProperty(
+        new StringParameterDefinition("custName", "NONE")
+    ))
+
+    // Enable concurrent builds
+    job.concurrentBuild = true
+
+    // Configure source code management (none)
+
+    // Define the axes for the Matrix Job
+
+    // Add an Execute Shell build step
+    job.getBuildersList().add(new Shell("echo 'Hello, Jenkins! This is ${environment}'"))
+
 jenkins.save()
 
 }
