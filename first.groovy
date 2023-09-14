@@ -16,6 +16,8 @@ def jenkins = Jenkins.instance
 def viewName = environment+'_csJobs'
 def existingView = jenkins.getView(viewName)
 
+   println("existing View '$existingView' .")
+   
 if (existingView == null) {
                     def newView = new ListView(viewName)
                     jenkins.addView(newView)
@@ -33,12 +35,25 @@ matrixJob(jobName) {
     description('This is an 1st cc Job DSL job')
 
 
-              
           println("job ' + $jobName + ' created-2.")
-                  
+              
+myView = hudson.model.Hudson.instance.getView(viewName)
+ println("view ' +$myView $viewName $jobName + ' job")
+ 
+ 
+  if (viewName instanceof ListView && jobName != null) {
+   println("job ' + $viewName $jobName + ' adding -3.")
+viewName.doAddJobToView(jobName) 
+viewName.save()
+} 
+else {
+newV = hudson.model.Hudson.instance.getView(viewName)
 
-def myView = jenkins.getView(existingView)
-def job = jenkins.getItem(jobName)
-myView.add(job)
+def newJ = jenkins.getItem(jobName)
+   println("job ' + $viewName $newV $newJ $jobName+ ' adding -4.")
+newV.doAddJobToView(newJ) 
+viewName.save()
+}
+jenkins.save()
 
 }

@@ -37,9 +37,22 @@ matrixJob(jobName) {
 
           println("job ' + $jobName + ' created-2.")
                   
+myView = hudson.model.Hudson.instance.getView(viewName)
+ println("view ' +$myView $viewName $jobName + ' job")
+ 
+  if (viewName instanceof ListView && jobName != null) {
+     println("job ' + $viewName $jobName + ' adding -3.")
+viewName.doAddJobToView(jobName) 
+viewName.save()
+} 
+else {
+newV = hudson.model.Hudson.instance.getView(viewName)
 
-def myView = jenkins.getView(existingView)
-def job = jenkins.getItem(jobName)
-myView.add(job)
+def newJ = jenkins.getItem(jobName)
+   println("job ' + $viewName $newV $newJ $jobName+ ' adding -4.")
+newV.doAddJobToView(newJ) 
+viewName.save()
+}
+jenkins.save()
 
 }
