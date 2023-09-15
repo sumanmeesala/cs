@@ -53,6 +53,6 @@ newV.doAddJobToView(newJ)
 newV.save()
 }
 }
-jenkins.save()
+
 
 
