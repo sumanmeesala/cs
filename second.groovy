@@ -52,6 +52,7 @@ def newJ = environment+'_cs2ndjob'
 newV.doAddJobToView(newJ) 
 newV.save()
 }
+}
 jenkins.save()
 
-}
+
